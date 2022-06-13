@@ -16,7 +16,7 @@
   }
 }
 
-@mixin mqMaxMinHeight($size1, $size2) {
+@mixin mqMaxWeightMinHeight($size1, $size2) {
    @media screen and (max-width: $size1) and (min-height: $size2) {
       @content; 
    }
