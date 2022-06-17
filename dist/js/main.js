@@ -12,7 +12,7 @@ const initApp = () => {
 	geoBtn.addEventListener('click', getGeoWeather);
 	const homeBtn = document.getElementById("home");
 	homeBtn.addEventListener('click', loadWeather);
-	const saveBtn = document.getElementById("saveLocation"'");
+	const saveBtn = document.getElementById("saveLocation");
 	saveBtn.addEventListener('click', saveLocation);
 
 	loadWeather();
