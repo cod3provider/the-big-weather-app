@@ -10,7 +10,7 @@ export default class CurrentLocation {
 		return this._name;
 	}
 
-	setName() {
+	setName(name) {
 		this._name = name;
 	}
 
@@ -18,7 +18,7 @@ export default class CurrentLocation {
 		return this._lat;
 	}
 
-	setLat() {
+	setLat(lat) {
 		this._lat = lat;
 	}
 
@@ -26,7 +26,7 @@ export default class CurrentLocation {
 		return this._lon;
 	}
 
-	setLon() {
+	setLon(lon) {
 		this._lon = lon;
 	}
 
@@ -34,7 +34,7 @@ export default class CurrentLocation {
 		return this._unit;
 	}
 
-	setUnit() {
+	setUnit(unit) {
 		this._unit = unit;
 	}
 

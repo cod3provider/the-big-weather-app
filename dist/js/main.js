@@ -1,20 +1,38 @@
-import { setLocationObject, getHomeLocation } from "./dataFunctions.js";
+import {
+	setLocationObject,
+	getHomeLocation,
+	getWeatherFromCoords,
+	getCoordsFromApi,
+	cleanText
+} from "./dataFunctions.js";
+
 import  {
+	setPlaceholderText,
 	addSpinner,
 	displayError,
+	displayApiError,
 	updateScreenReaderConfirmation,
 } from "./domFunctions.js";
+
 import CurrentLocation from "./CurrentLocation.js";
 const currentLoc = new CurrentLocation();
 
 const initApp = () => {
-	const geoBtn = document.getElementById('#getLocation');
+	const geoBtn = document.getElementById('getLocation');
 	geoBtn.addEventListener('click', getGeoWeather);
-	const homeBtn = document.getElementById("home");
+	const homeBtn = document.getElementById('home');
 	homeBtn.addEventListener('click', loadWeather);
-	const saveBtn = document.getElementById("saveLocation");
+	const saveBtn = document.getElementById('saveLocation');
 	saveBtn.addEventListener('click', saveLocation);
-
+	const unitBtn = document.getElementById('unit');
+	unitBtn.addEventListener('click', setUnitPref);
+	const refreshBtn = document.getElementById('refresh');
+	refreshBtn.addEventListener('click', refreshWeather);
+	const locationEntry = document.getElementById('searchBar__form');
+	locationEntry.addEventListener('submit', submitNewLocation);
+	//set up
+	setPlaceholderText();
+	//load weather
 	loadWeather();
 }
 
@@ -34,7 +52,7 @@ const getGeoWeather = e => {
 }
 
 const geoError = errObj => {
-	const errMsg = errObj ? errObj.message : "Geolocation not supported";
+	const errMsg = errObj.message ? errObj.message : "Geolocation not supported";
 	displayError(errMsg, errMsg);
 }
 
@@ -98,9 +116,51 @@ const saveLocation = () => {
 	}
 }
 
+const setUnitPref = () => {
+	const unitIcon = document.querySelector('.fa-chart-column');
+	addSpinner(unitIcon);
+	currentLoc.toggleUnit();
+	updateDataAndDisplay(currentLoc);
+}
+
+const refreshWeather = () => {
+	const refreshIcon = document.querySelector('.fa-arrows-rotate');
+	addSpinner(refreshIcon);
+	updateDataAndDisplay(currentLoc);
+}
+
+const submitNewLocation = async (e) => {
+	e.preventDefault();
+	const text = document.getElementById('searchBar__text').value;
+	const entryText = cleanText(text);
+	if (!entryText.length) return;
+	const locationIcon = document.querySelector('.magnifying-glass');
+	addSpinner(locationIcon);
+	const coordsData = await getCoordsFromApi(entryText, currentLoc.getUnit());
+	//	 api data
+	if (coordsData) {
+		if (coordsData.cod === 200) {
+			//	success
+			const myCoordsObj = {
+				lat: coordsData.coord.lat,
+				lon: coordsData.coord.lon,
+				name: coordsData.sys.country
+					? `${coordsData.name}, ${coordsData.sys.country}`
+					: coordsData.name
+			};
+			setLocationObject(currentLoc, myCoordsObj);
+			updateScreenReaderConfirmation(currentLoc);
+		} else {
+			displayApiError(coordsData);
+		}
+	} else {
+		displayError('Connection Error', 'Connection Error');
+	}
+}
+
 const updateDataAndDisplay = async (locationObj) => {
-	console.log(locationObj);
-	// const weatherJson = await getWeatherFromCoords(locationObj);
+	const weatherJson = await getWeatherFromCoords(locationObj);
+	console.log(weatherJson);
 	// if (weatherJson) {
 	// 	updateDisplay(weatherJson, locationObj);
 	// }
