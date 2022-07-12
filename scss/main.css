@@ -7,7 +7,7 @@
 html {
   background-color: rgba(0, 0, 255, 0.5);
   font-size: 16px;
-  background-image: url("../img/clouds.jpg");
+  background-image: url("../dist/img/clouds.jpg");
   background-size: cover;
   background-blend-mode: overlay;
   font-family: "Montserrat", sans-serif;
@@ -377,27 +377,27 @@ hr {
 
 .rain {
   background-color: rgba(0, 0, 255, 0.5);
-  background-image: url("../img/rain.jpg");
+  background-image: url("../dist/img/rain.jpg");
 }
 
 .snow {
   background-image: rgba(0, 0, 255, 0.5);
-  background-image: url("../img/snow.jpg");
+  background-image: url("../dist/img/snow.jpg");
 }
 
 .night {
   background-image: rgba(204, 0, 102, 0.5);
-  background-image: url("../img/night.jpg");
+  background-image: url("../dist/img/night.jpg");
 }
 
 .fog {
   background-image: darkslategray;
-  background-image: url("../img/fog.jpg");
+  background-image: url("../dist/img/fog.jpg");
 }
 
 .clouds {
   background-image: rgba(0, 0, 255, 0.5);
-  background-image: url("../img/clouds.jpg");
+  background-image: url("../dist/img/clouds.jpg");
 }
 
 /*# sourceMappingURL=main.css.map */

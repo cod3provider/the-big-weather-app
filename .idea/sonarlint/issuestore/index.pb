@@ -17,3 +17,5 @@ V
 &dist/scss/layout/_currentForecast.scss,7/3/733b92565ec53d1ad568e4e4819df0af43a3129f
 T
 $dist/scss/layout/_dailyForecast.scss,e/f/ef56c8b028ee76d87908a20c3899e499dcfef868
+J
+dist/js/CurrentLocation.js,5/2/52ab9b6d093f1ebb36ae24cf46153a724743b96b

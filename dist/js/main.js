@@ -12,6 +12,7 @@ import  {
 	displayError,
 	displayApiError,
 	updateScreenReaderConfirmation,
+	updateDisplay,
 } from "./domFunctions.js";
 
 import CurrentLocation from "./CurrentLocation.js";
@@ -52,13 +53,13 @@ const getGeoWeather = e => {
 }
 
 const geoError = errObj => {
-	const errMsg = errObj.message ? errObj.message : "Geolocation not supported";
+	const errMsg = errObj ? errObj.message : "Geolocation not supported";
 	displayError(errMsg, errMsg);
 }
 
 const geoSuccess = position => {
 	const myCoordsObj = {
-		lat: positions.coords.latitude,
+		lat: position.coords.latitude,
 		lon: position.coords.longitude,
 		name: `Lat:${position.coords.latitude} Long:${position.coords.longitude}`
 	}
@@ -70,14 +71,14 @@ const geoSuccess = position => {
 
 const loadWeather = e => {
 	const savedLocation = getHomeLocation();
-	if (!savedLocation && e) {
+	if (!savedLocation && !e) {
 		return getGeoWeather();
 	}
-	if (!savedLocation && e === 'click') {
+	if (!savedLocation && e.type === 'click') {
 		displayError(
 			"No Home Location Saved. ",
 			"Please save your home location first."
-			);
+		);
 	} else if (savedLocation && !e) {
 		displayHomeLocationWeather(savedLocation);
 	} else {
@@ -133,8 +134,10 @@ const submitNewLocation = async (e) => {
 	e.preventDefault();
 	const text = document.getElementById('searchBar__text').value;
 	const entryText = cleanText(text);
-	if (!entryText.length) return;
-	const locationIcon = document.querySelector('.magnifying-glass');
+	if (!entryText.length) {
+		return
+	};
+	const locationIcon = document.querySelector('.fa-magnifying-glass');
 	addSpinner(locationIcon);
 	const coordsData = await getCoordsFromApi(entryText, currentLoc.getUnit());
 	//	 api data
@@ -149,7 +152,7 @@ const submitNewLocation = async (e) => {
 					: coordsData.name
 			};
 			setLocationObject(currentLoc, myCoordsObj);
-			updateScreenReaderConfirmation(currentLoc);
+			updateDataAndDisplay(currentLoc);
 		} else {
 			displayApiError(coordsData);
 		}
@@ -160,8 +163,8 @@ const submitNewLocation = async (e) => {
 
 const updateDataAndDisplay = async (locationObj) => {
 	const weatherJson = await getWeatherFromCoords(locationObj);
-	console.log(weatherJson);
-	// if (weatherJson) {
-	// 	updateDisplay(weatherJson, locationObj);
-	// }
+	// console.log(weatherJson);
+	if (weatherJson) {
+		updateDisplay(weatherJson, locationObj);
+	}
 }
