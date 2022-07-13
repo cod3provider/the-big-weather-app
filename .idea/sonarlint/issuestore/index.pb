@@ -1,21 +1,12 @@
 
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-P
- dist/scss/abstracts/_mixins.scss,4/e/4eeed7e1d3d83548bf471c0d9e0d864e158ae2b5
-Q
-!dist/scss/components/_fadeIn.scss,2/4/246e8e6cbe870b500d3ec4a9417dc9e86ca750bb
-S
-#dist/scss/themes/_backghrounds.scss,0/7/0741b88e96be0345d06fe576fdb493095dc58f1f
-I
-dist/scss/base/_base.scss,2/2/22a264dc6d48cc525af1f3fbdfe3a7af710d9c2e
-C
-dist/scss/main.scss,e/c/ecf0cc6390db8389491d71d058745976b061b81f
-Q
-!dist/scss/layout/_navButtons.scss,3/0/3003a7f4d8d104b4d342c463bdd8cce47aeb5089
-V
-&dist/scss/layout/_currentForecast.scss,7/3/733b92565ec53d1ad568e4e4819df0af43a3129f
-T
-$dist/scss/layout/_dailyForecast.scss,e/f/ef56c8b028ee76d87908a20c3899e499dcfef868
 J
 dist/js/CurrentLocation.js,5/2/52ab9b6d093f1ebb36ae24cf46153a724743b96b
+=
+scss/main.css,9/8/985658d7788a22c24e4db0da0f19d2d93329b76f
+>
+scss/main.scss,9/0/90de66ec70bf430961a72ce5d436a8193a0100e0
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
