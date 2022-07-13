@@ -1,5 +1,4 @@
 // const WEATHER_API_KEY = 'b9650586ad76890d40ec8480cbcca50f';
-
 export const setLocationObject = (locationObj, coordsObj) => {
 	const { lat, lon, name, unit } = coordsObj;
 	locationObj.setLat(lat);
@@ -67,7 +66,7 @@ export const getCoordsFromApi = async (entryText, units) => {
 		const dataStream = await fetch('./.netlify/functions/get_coords', {
 			method: 'POST',
 			bode: JSON.stringify(urlDataObj),
-		})
+		});
 		const jsonData = await dataStream.json();
 		return jsonData;
 	} catch (err) {

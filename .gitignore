@@ -348,3 +348,6 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code themes) working folder
 .ionide/
+
+# Local Netlify folder
+.netlify

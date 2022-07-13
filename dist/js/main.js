@@ -40,12 +40,10 @@ const initApp = () => {
 document.addEventListener("DOMContentLoaded", initApp);
 
 const getGeoWeather = e => {
-	if (e) {
-		if (e.type === 'click') {
+	if (e && e.type === 'click') {
 			const mapIcon = document.querySelector('.fa-map-marker-alt');
 			addSpinner(mapIcon);
 		}
-	}
 	if (!navigator.geolocation) {
 		return geoError();
 	}
@@ -62,9 +60,9 @@ const geoSuccess = position => {
 		lat: position.coords.latitude,
 		lon: position.coords.longitude,
 		name: `Lat:${position.coords.latitude} Long:${position.coords.longitude}`
-	}
+	};
 //	set location object
-	setLocationObject(currentLoc, myCoordsObj)
+	setLocationObject(currentLoc, myCoordsObj);
 	//	update data and display
 	updateDataAndDisplay(currentLoc);
 }
@@ -76,7 +74,7 @@ const loadWeather = e => {
 	}
 	if (!savedLocation && e.type === 'click') {
 		displayError(
-			"No Home Location Saved. ",
+			"No Home Location Saved.",
 			"Please save your home location first."
 		);
 	} else if (savedLocation && !e) {
@@ -149,7 +147,7 @@ const submitNewLocation = async (e) => {
 				lon: coordsData.coord.lon,
 				name: coordsData.sys.country
 					? `${coordsData.name}, ${coordsData.sys.country}`
-					: coordsData.name
+					: coordsData.name,
 			};
 			setLocationObject(currentLoc, myCoordsObj);
 			updateDataAndDisplay(currentLoc);
