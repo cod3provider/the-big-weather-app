@@ -71,7 +71,7 @@ export const getCoordsFromApi = async (entryText, units) => {
 		const jsonData = await dataStream.json();
 		return jsonData;
 	} catch (err) {
-		console.error(err.stack);
+		console.error(err);
 	}
 }
 
